@@ -167,16 +167,23 @@ export const model = {
 			}
 		},
 		totals: {
+			increments: {
+				baseline: {},
+				year1: {},
+				year2: {},
+				year3: {}
+			},
 			run: function() {
 				for (const key in this.increments) {
 					results.totals.savings[key] = results.care.fcr[key] + results.care.ai_scale[key] + results.care.efficiency[key];
-					results.totals.growth[key] = results.sales.increase[key] + results.sales.average_order_value[key];
+					results.totals.growth[key] = results.sales.increase[key];
 					results.totals.total_benefit[key] = results.totals.savings[key] + results.totals.growth[key];
 					
 					controller.update("total-savings-" + key, results.totals.savings[key]);
 					controller.update("total-growth-" + key, results.totals.growth[key]);
 					controller.update("total-total-benefit-" + key, results.totals.total_benefit[key]);
 				}
+				return results;
 			},
 		}
 	}

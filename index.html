@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8" />
+	<title>Getting Started</title>
+  </head>
+  <body>
+	  <script src="./dist/main.js"></script>
+    <input type="text" data-roi="sales_annual_website_traffic" value="50000000" />
+    <input type="text" data-roi="sales_conversion_rate_to_sale" value=".5" />
+    <input type="text" data-roi="sales_average_order_value" value="100" />
+    
+    <script>
+        ROICalc.init({
+            debug: true,
+            inputs: {
+                fields: [
+                    'sales_annual_website_traffic',
+                    'sales_conversion_rate_to_sale',
+                    'sales_average_order_value',
+                    'care_annual_call_volume',
+                    'care_cost_per_call',
+                    'care_first_contact_resolution'
+                ]
+            },
+            constants: {
+                telco: {
+                    conv_rate: 0.5,
+                    avg_order: 1000,
+                    cost_call: 8.27,
+                    resolution: 70.1
+                },
+                fiserv: {
+                    conv_rate: 0.5,
+                    avg_order: 912,
+                    cost_call: 5.12,
+                    resolution: 75.9
+                },
+                travel: {
+                    conv_rate: 1,
+                    avg_order: 375,
+                    cost_call: 5.01,
+                    resolution: 72
+                },
+                retail: {
+                    conv_rate: 1,
+                    avg_order: 100,
+                    cost_call: 3.50,
+                    resolution: 70
+                }
+            }
+        });
+    </script>
+  </body>
+</html>

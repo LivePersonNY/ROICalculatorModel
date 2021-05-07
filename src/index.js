@@ -189,7 +189,7 @@ export const model = {
 	}
 }
 
-var results = {
+export var results = {
 	sales: {
 		increase: {},
 		average_order_value: {},

@@ -53,7 +53,7 @@ export const model = {
 	},
 	updateAll: function() {
 		config.inputs.fields.forEach(function(field) {
-			var val = $('[data-roi="' + field + '"]').val();
+			var val = parseFloat($('[data-roi="' + field + '"]').val());
 			model.update(field, val);
 		});
 	},
@@ -157,7 +157,7 @@ export const model = {
 							controller.update("care-ai-scale-" + key, results.care.ai_scale[key]);
 					
 					/*F57*/ var remaining_agent_conversations = remaining_conversations - bot_contained_conversations;
-					/*F60*/ var cost_per_messaging_conversation = cost_per_call / this.increments[key].eff_ratio;
+					/*F60*/ var cost_per_messaging_conversation = this.increments[key].eff_ratio > 0 ? (cost_per_call / this.increments[key].eff_ratio) : 0;
 					/*F61*/ var agent_cost_at_baseline = remaining_agent_conversations * cost_per_call;
 					/*F62*/ var agent_cost_with_bots = remaining_agent_conversations * cost_per_messaging_conversation;
 					/*F63*/ results.care.efficiency[key] = agent_cost_at_baseline - agent_cost_with_bots;

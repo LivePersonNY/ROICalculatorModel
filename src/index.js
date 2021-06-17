@@ -100,6 +100,16 @@ export const model = {
 					var mess_assisted_sales = total_convos * (conv_rate * this.increments[key].conv_rate_m);
 					var avg_order_value = avg_order + (avg_order * this.increments[key].ord_incr);
 					
+					results.sales.raw[key] = {
+						digital_orders: digital_orders,
+						convo_started: convo_started,
+						convo_w_channels: convo_w_channels,
+						total_convos: total_convos,
+						self_sales_conversion_rate: self_sales_conversion_rate,
+						mess_assisted_sales: mess_assisted_sales,
+						avg_order_value: avg_order_value,
+					};
+					
 					results.sales.increase[key] = avg_order * mess_assisted_sales;
 					results.sales.average_order_value[key] = (avg_order_value - avg_order) * mess_assisted_sales;
 					controller.update("sales-increase-" + key, results.sales.increase[key]);
@@ -162,6 +172,18 @@ export const model = {
 					/*F62*/ var agent_cost_with_bots = remaining_agent_conversations * cost_per_messaging_conversation;
 					/*F63*/ results.care.efficiency[key] = agent_cost_at_baseline - agent_cost_with_bots;
 							controller.update("care-efficiency-" + key, results.care.efficiency[key]);
+							
+							results.care.raw[key] = {
+								conversations_shifted: conversations_shifted,
+								messaging_fcr: messaging_fcr,
+								repeat_conversations: repeat_conversations,
+								remaining_conversations: remaining_conversations,
+								bot_contained_conversations: bot_contained_conversations,
+								remaining_agent_conversations: remaining_agent_conversations,
+								cost_per_messaging_conversation: cost_per_messaging_conversation,
+								agent_cost_at_baseline: agent_cost_at_baseline,
+								agent_cost_with_bots: agent_cost_with_bots
+							};
 				}
 				return results;
 			}
@@ -193,16 +215,19 @@ export var results = {
 	sales: {
 		increase: {},
 		average_order_value: {},
+		raw: {}
 	},
 	care: {
 		fcr: {},
 		ai_scale: {},
 		efficiency: {},
+		raw: {}
 	},
 	totals: {
 		savings: {},
 		growth: {},
 		total_benefit: {},
+		raw: {}
 	}
 }
 

@@ -53,7 +53,7 @@ export const model = {
 	},
 	updateAll: function() {
 		config.inputs.fields.forEach(function(field) {
-			var val = $('[data-roi="' + field + '"]').val().replace(/\D/g, "");
+			var val = $('[data-roi="' + field + '"]').val().replace(/[^0-9.]/g, "");
 			model.update(field, val);
 		});
 	},

@@ -198,7 +198,7 @@ export const model = {
 			run: function() {
 				for (const key in this.increments) {
 					results.totals.savings[key] = results.care.fcr[key] + results.care.ai_scale[key] + results.care.efficiency[key];
-					results.totals.growth[key] = results.sales.increase[key];
+					results.totals.growth[key] = results.sales.increase[key] + results.sales.average_order_value[key];
 					results.totals.total_benefit[key] = results.totals.savings[key] + results.totals.growth[key];
 					
 					controller.update("total-savings-" + key, results.totals.savings[key]);

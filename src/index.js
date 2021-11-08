@@ -251,9 +251,9 @@ const controller = {
 		debug.info("View Instantiated.");
 	},
 	update: function(field, value) {
-		$('[data-roi="' + field + '"]').text(currency.format(Math.round(value)));
+		$('[data-roi="' + field + '"]').text(currency.format(value));
 		if (config.outputs.callbacks[field] !== undefined) {
-			config.outputs.callbacks[field](value, results, currency.format(Math.round(value)));
+			config.outputs.callbacks[field](value, results, currency.format(value));
 		}
 	}
 }
